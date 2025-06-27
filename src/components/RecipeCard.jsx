@@ -22,8 +22,8 @@ function RecipeCard({ recipe }) {
     const ingredientsHtml = recipe.ingredients
       .map((ing) => {
         const hasAmount = ing.amount !== undefined && ing.amount !== null && ing.amount !== '';
-        const amount = hasAmount ? `${ing.amount} ${ing.unit}`.trim() : ing.unit;
-        return `<li>${hasAmount ? amount + ' ' : ''}${ing.name}</li>`;
+        const amount = hasAmount ? Number(ing.amount) * scaleFactor : null;
+        return `<li>${hasAmount ? `${amount} ${ing.unit}` : ing.unit} ${ing.name}</li>`;
       })
       .join('');
 
@@ -31,9 +31,22 @@ function RecipeCard({ recipe }) {
       .map((step) => `<li>${step}</li>`)
       .join('');
 
-    const fullHtml = `<h1>${recipe.title}</h1><ul>${ingredientsHtml}</ul><ol>${instructionsHtml}</ol><details><summary>Waarom kersenhout?</summary><p>${recipe.woodExplanation}</p></details>`;
+    const fullHtml = `
+      <h1>${recipe.title}</h1>
+      <p>Voorbereiding: ${recipe.prepTime}</p>
+      <p>Bereiding: ${recipe.cookTime}</p>
+      <p>Gang: ${recipe.course}</p>
+      <p>Keuken: ${recipe.cuisine}</p>
+      <p>Porties: ${recipe.servings * scaleFactor}</p>
+      <h2>Ingrediënten</h2>
+      <ul>${ingredientsHtml}</ul>
+      <h2>Bereiding</h2>
+      <ol>${instructionsHtml}</ol>
+      <details><summary>Waarom kersenhout?</summary><p>${recipe.woodExplanation}</p></details>
+      <div class="note">${recipe.notes}</div>
+    `;
 
-    setHtmlString(fullHtml);
+    setHtmlString(fullHtml.trim());
   };
 
   return (
