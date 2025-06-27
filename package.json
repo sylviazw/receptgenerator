@@ -2,22 +2,23 @@
   "name": "receptgenerator",
   "version": "1.0.0",
   "private": true,
-"scripts": {
-  "freeport": "powershell -Command \"$connection = Get-NetTCPConnection -LocalPort 3000 -ErrorAction SilentlyContinue; if ($connection) { Stop-Process -Id $connection.OwningProcess -Force }\"",
-  "start": "npm run freeport && set PORT=3000 && react-scripts start",
-  "build": "react-scripts build",
-  "test": "react-scripts test --env=jsdom",
-  "eject": "react-scripts eject"
-},
+  "scripts": {
+    "freeport": "powershell -Command \"$connection = Get-NetTCPConnection -LocalPort 3000 -ErrorAction SilentlyContinue; if ($connection) { Stop-Process -Id $connection.OwningProcess -Force }\"",
+    "start": "npm run freeport & cross-env PORT=3000 react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1"
   },
   "devDependencies": {
-    "tailwindcss": "^3.2.7",
     "autoprefixer": "^10.4.14",
-    "postcss": "^8.4.21"
+    "cross-env": "^7.0.3",
+    "postcss": "^8.4.21",
+    "tailwindcss": "^3.2.7"
   },
   "browserslist": {
     "production": [
