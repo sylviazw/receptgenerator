@@ -12,10 +12,29 @@ import {
 
 function RecipeCard({ recipe }) {
   const [scaleFactor, setScaleFactor] = useState(1);
+  const [htmlString, setHtmlString] = useState('');
 
   const handlePrint = () => window.print();
 
   const handlePin = () => alert('Pinterest-integratie volgt later!');
+
+  const handleGenerateHtml = () => {
+    const ingredientsHtml = recipe.ingredients
+      .map((ing) => {
+        const hasAmount = ing.amount !== undefined && ing.amount !== null && ing.amount !== '';
+        const amount = hasAmount ? `${ing.amount} ${ing.unit}`.trim() : ing.unit;
+        return `<li>${hasAmount ? amount + ' ' : ''}${ing.name}</li>`;
+      })
+      .join('');
+
+    const instructionsHtml = recipe.instructions
+      .map((step) => `<li>${step}</li>`)
+      .join('');
+
+    const fullHtml = `<h1>${recipe.title}</h1><ul>${ingredientsHtml}</ul><ol>${instructionsHtml}</ol><details><summary>Waarom kersenhout?</summary><p>${recipe.woodExplanation}</p></details>`;
+
+    setHtmlString(fullHtml);
+  };
 
   return (
     <div className="bg-white shadow-lg p-6 rounded-md">
@@ -105,6 +124,19 @@ function RecipeCard({ recipe }) {
           </div>
         </div>
       </div>
+
+      <button
+        className="mt-6 px-4 py-2 bg-blue-500 text-white rounded"
+        onClick={handleGenerateHtml}
+      >
+        Genereer HTML
+      </button>
+
+      {htmlString && (
+        <pre className="mt-4 bg-gray-100 p-2 whitespace-pre-wrap overflow-x-auto">
+          {htmlString}
+        </pre>
+      )}
     </div>
   );
 }
