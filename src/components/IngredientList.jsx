@@ -1,4 +1,4 @@
-function IngredientList({ ingredients, multiplier, setMultiplier }) {
+function IngredientList({ ingredients, scaleFactor, setScaleFactor }) {
   const multiples = [1, 2, 3];
 
   return (
@@ -7,8 +7,8 @@ function IngredientList({ ingredients, multiplier, setMultiplier }) {
         {multiples.map((m) => (
           <button
             key={m}
-            onClick={() => setMultiplier(m)}
-            className={`px-2 py-1 border rounded ${multiplier === m ? 'bg-gray-200' : ''}`}
+            onClick={() => setScaleFactor(m)}
+            className={`px-2 py-1 border rounded ${scaleFactor === m ? 'bg-gray-200' : ''}`}
           >
             {m}x
           </button>
@@ -17,7 +17,7 @@ function IngredientList({ ingredients, multiplier, setMultiplier }) {
       <ul className="list-disc list-inside">
         {ingredients.map((ing, idx) => (
           <li key={idx}>
-            {ing.amount * multiplier} {ing.unit} {ing.name}
+            {ing.amount * scaleFactor} {ing.unit} {ing.name}
           </li>
         ))}
       </ul>

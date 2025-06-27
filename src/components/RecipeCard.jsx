@@ -4,7 +4,7 @@ import Instructions from './Instructions';
 import Notes from './Notes';
 
 function RecipeCard({ recipe }) {
-  const [multiplier, setMultiplier] = useState(1);
+  const [scaleFactor, setScaleFactor] = useState(1);
 
   return (
     <div className="bg-white shadow-lg p-6 rounded-md">
@@ -26,10 +26,10 @@ function RecipeCard({ recipe }) {
         <div><span className="font-semibold">Bereiding:</span> {recipe.cookTime}</div>
         <div><span className="font-semibold">Gang:</span> {recipe.course}</div>
         <div><span className="font-semibold">Keuken:</span> {recipe.cuisine}</div>
-        <div><span className="font-semibold">Porties:</span> {recipe.servings} personen</div>
+        <div><span className="font-semibold">Porties:</span> {4 * scaleFactor} personen</div>
       </div>
 
-      <IngredientList ingredients={recipe.ingredients} multiplier={multiplier} setMultiplier={setMultiplier} />
+      <IngredientList ingredients={recipe.ingredients} scaleFactor={scaleFactor} setScaleFactor={setScaleFactor} />
 
       <Instructions steps={recipe.instructions} />
 
