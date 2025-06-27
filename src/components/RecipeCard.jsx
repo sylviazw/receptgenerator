@@ -2,7 +2,13 @@ import { useState } from 'react';
 import IngredientList from './IngredientList';
 import Instructions from './Instructions';
 import Notes from './Notes';
-import { Clock, ChefHat, UtensilsCrossed, Users, ShoppingCart } from 'react-icons/lucide';
+import {
+  FaClock,
+  FaUserTie,
+  FaUtensils,
+  FaUsers,
+  FaShoppingCart,
+} from 'react-icons/fa';
 
 function RecipeCard({ recipe }) {
   const [scaleFactor, setScaleFactor] = useState(1);
@@ -40,11 +46,11 @@ function RecipeCard({ recipe }) {
 
       {/* Metadata */}
       <div className="mt-4 grid grid-cols-2 sm:grid-cols-5 gap-y-2 text-sm">
-        <div><Clock className="inline w-4 h-4 mr-1" /> Voorbereiding: {recipe.prepTime}</div>
-        <div><Clock className="inline w-4 h-4 mr-1" /> Bereiding: {recipe.cookTime}</div>
-        <div><UtensilsCrossed className="inline w-4 h-4 mr-1" /> Gang: {recipe.course}</div>
-        <div><ChefHat className="inline w-4 h-4 mr-1" /> Keuken: {recipe.cuisine}</div>
-        <div><Users className="inline w-4 h-4 mr-1" /> Porties: {4 * scaleFactor} personen</div>
+        <div><FaClock className="inline w-4 h-4 mr-1" /> Voorbereiding: {recipe.prepTime}</div>
+        <div><FaClock className="inline w-4 h-4 mr-1" /> Bereiding: {recipe.cookTime}</div>
+        <div><FaUtensils className="inline w-4 h-4 mr-1" /> Gang: {recipe.course}</div>
+        <div><FaUserTie className="inline w-4 h-4 mr-1" /> Keuken: {recipe.cuisine}</div>
+        <div><FaUsers className="inline w-4 h-4 mr-1" /> Porties: {4 * scaleFactor} personen</div>
       </div>
 
       {/* Portieknoppen */}
@@ -86,13 +92,13 @@ function RecipeCard({ recipe }) {
 
         <div className="space-y-2">
           <div>
-            <ShoppingCart className="inline w-5 h-5 mr-2 text-gray-700" />
+            <FaShoppingCart className="inline w-5 h-5 mr-2 text-gray-700" />
             <a href="/product/kersenhout" className="text-blue-600 underline">
               Kersenhout chunks voor zalm
             </a>
           </div>
           <div>
-            <ShoppingCart className="inline w-5 h-5 mr-2 text-gray-700" />
+            <FaShoppingCart className="inline w-5 h-5 mr-2 text-gray-700" />
             <a href="/product/houten-rookplank" className="text-blue-600 underline">
               Rookplank voor visgerechten
             </a>
