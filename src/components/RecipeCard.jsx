@@ -24,7 +24,7 @@ function RecipeCard({ recipe }) {
       <div className="mt-4 grid grid-cols-2 sm:grid-cols-5 gap-2">
         <div><span className="font-semibold">Voorbereiding:</span> {recipe.prepTime}</div>
         <div><span className="font-semibold">Bereiding:</span> {recipe.cookTime}</div>
-        <div><span className="font-semibold">Gang:</span> {recipe.category}</div>
+        <div><span className="font-semibold">Gang:</span> {recipe.course}</div>
         <div><span className="font-semibold">Keuken:</span> {recipe.cuisine}</div>
         <div><span className="font-semibold">Porties:</span> {4 * scaleFactor} personen</div>
       </div>
