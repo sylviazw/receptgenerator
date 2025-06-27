@@ -17,7 +17,7 @@ function RecipeCard({ recipe }) {
       </div>
 
       <div className="mt-4 flex space-x-2">
-        <button className="bg-yellow-500 text-white px-4 py-2 rounded">Recept afdrukken</button>
+        <button className="bg-yellow-500 text-white px-4 py-2 rounded" onClick={() => window.print()}> Recept afdrukken</button>
         <button className="border px-4 py-2 rounded">Pin recept</button>
       </div>
 
