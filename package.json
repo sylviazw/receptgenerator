@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
 "scripts": {
-  "freeport": "powershell -Command \"try { $pid = (Get-NetTCPConnection -LocalPort 3000).OwningProcess } catch {}; if ($pid) { Stop-Process -Id $pid -Force }\"",
+  "freeport": "powershell -Command \"$connection = Get-NetTCPConnection -LocalPort 3000 -ErrorAction SilentlyContinue; if ($connection) { Stop-Process -Id $connection.OwningProcess -Force }\"",
   "start": "npm run freeport && set PORT=3000 && react-scripts start",
   "build": "react-scripts build",
   "test": "react-scripts test --env=jsdom",
