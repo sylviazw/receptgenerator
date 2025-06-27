@@ -2,8 +2,8 @@
   "name": "receptgenerator",
   "version": "1.0.0",
   "private": true,
- "scripts": {
-  "freeport": "for /f \"tokens=5\" %a in ('netstat -ano ^| findstr :3000') do taskkill /PID %a /F",
+"scripts": {
+  "freeport": "powershell -Command \"Get-Process -Id (Get-NetTCPConnection -LocalPort 3000).OwningProcess | Stop-Process\"",
   "start": "npm run freeport && set PORT=3000 && react-scripts start",
   "build": "react-scripts build",
   "test": "react-scripts test --env=jsdom",
