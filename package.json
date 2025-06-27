@@ -2,12 +2,13 @@
   "name": "receptgenerator",
   "version": "1.0.0",
   "private": true,
-  "scripts": {
-    "start": "set PORT=3000 && react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  },
+ "scripts": {
+  "freeport": "for /f \"tokens=5\" %a in ('netstat -ano ^| findstr :3000') do taskkill /PID %a /F",
+  "start": "npm run freeport && set PORT=3000 && react-scripts start",
+  "build": "react-scripts build",
+  "test": "react-scripts test --env=jsdom",
+  "eject": "react-scripts eject"
+},
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
