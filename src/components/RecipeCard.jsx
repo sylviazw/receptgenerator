@@ -43,8 +43,8 @@ function RecipeCard({ recipe }) {
   .receptkaart .buttons button{padding:8px 12px;border-radius:4px;border:1px solid #ccc;background:#f2f2f2;cursor:pointer;}
   .receptkaart .info{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;font-size:14px;}
   .receptkaart .info div{flex:1 1 45%;}
-  .receptkaart .scale-buttons{margin-top:16px;}
-  .receptkaart .scale-buttons button{padding:4px 8px;border:1px solid #ccc;border-radius:4px;margin-right:4px;cursor:pointer;background:#f9f9f9;}
+  .receptkaart .scale-buttons{margin-top:16px;display:flex;gap:4px;}
+  .receptkaart .scale-buttons button{padding:4px 8px;border:none;border-radius:4px;background:#dd9933;color:#fff;cursor:pointer;}
   .receptkaart .note-box{background:#f7f7f7;border-radius:4px;padding:12px;margin-top:16px;}
   .receptkaart .cta{border-top:1px solid #ddd;padding-top:16px;margin-top:16px;}
   .receptkaart .cta div{margin-bottom:4px;}
