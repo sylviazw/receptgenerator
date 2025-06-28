@@ -43,8 +43,8 @@ function RecipeCard({ recipe }) {
   .receptkaart .buttons button{padding:8px 12px;border-radius:4px;border:1px solid #ccc;background:#f2f2f2;cursor:pointer;}
   .receptkaart .info{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;font-size:14px;}
   .receptkaart .info div{flex:1 1 45%;}
-  .receptkaart .scale-buttons{margin-top:16px;display:flex;gap:4px;}
-  .receptkaart .scale-buttons button{padding:4px 8px;border:none;border-radius:4px;background:#dd9933;color:#fff;cursor:pointer;}
+  .receptkaart .scale-buttons{margin-top:16px;font-size:14px;}
+  .receptkaart .scale-buttons button{background:none;border:none;cursor:pointer;padding:0 4px;}
   .receptkaart .note-box{background:#f7f7f7;border-radius:4px;padding:12px;margin-top:16px;}
   .receptkaart .cta{border-top:1px solid #ddd;padding-top:16px;margin-top:16px;}
   .receptkaart .cta div{margin-bottom:4px;}
@@ -64,8 +64,8 @@ function RecipeCard({ recipe }) {
       }
     });
   }
-  card.querySelectorAll('.scale-buttons button').forEach(btn=>{
-    btn.addEventListener('click',()=>update(Number(btn.dataset.factor)));
+  card.querySelectorAll('.scale-buttons [data-scale]').forEach(btn=>{
+    btn.addEventListener('click',()=>update(Number(btn.dataset.scale)));
   });
 })();</script>`;
 
@@ -90,9 +90,9 @@ function RecipeCard({ recipe }) {
     <div><span class="material-icons-outlined">people</span> Porties: <span class="servings">${recipe.servings * scaleFactor} personen</span></div>
   </div>
   <div class="scale-buttons">
-    <button data-factor="1">1x</button>
-    <button data-factor="2">2x</button>
-    <button data-factor="3">3x</button>
+    <button data-scale="1">1x</button> |
+    <button data-scale="2">2x</button> |
+    <button data-scale="3">3x</button>
   </div>
   <h3>Ingredi\u00ebnten</h3>
   <ul>
