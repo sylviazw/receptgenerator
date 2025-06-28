@@ -1,0 +1,86 @@
+<div class="receptkaart" data-base-servings="4">
+  <style>
+    .receptkaart {font-family: Arial, sans-serif; max-width: 700px; margin: auto; border: 1px solid #ddd; padding: 16px;}
+    .receptkaart .header {display: flex; justify-content: space-between; align-items: flex-start; gap: 16px;}
+    .receptkaart h2 {font-style: italic; color: #666; margin-top: 0;}
+    .receptkaart img {width: 150px; height: auto;}
+    .receptkaart .action-buttons {margin-top: 8px; display: flex; gap: 8px;}
+    .receptkaart .action-buttons button {background: #dd9933; border: none; color: #fff; border-radius: 4px; padding: 4px 8px; display: flex; align-items: center; gap: 4px; font-size: 14px; cursor: pointer;}
+    .receptkaart .info-grid {display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-top: 16px; font-size: 14px;}
+    .receptkaart .scale-buttons {margin-top: 8px;}
+    .receptkaart .scale-buttons button {padding: 2px 6px; margin-right: 4px; border: 1px solid #ccc; background: #f2f2f2; border-radius: 4px; cursor: pointer; font-size: 14px;}
+    .receptkaart ul {margin-top: 8px; padding-left: 20px;}
+    .receptkaart .note-box {background: #f7f7f7; border: 1px solid #eee; padding: 12px; margin-top: 16px;}
+    .receptkaart .cta {border-top: 1px solid #ddd; padding-top: 16px; margin-top: 16px;}
+    .receptkaart .cta div {margin-bottom: 4px;}
+    .receptkaart .cta a {color: #0066cc; text-decoration: underline;}
+    @media (max-width: 600px) {.receptkaart .header {flex-direction: column;} .receptkaart img {width: 100%;}}
+  </style>
+  <div class="header">
+    <div>
+      <h1>Gegrilde Zalm met Kersenhout</h1>
+      <h2>– The Dutch Smokehouse –</h2>
+    </div>
+    <img src="https://via.placeholder.com/150" alt="Gegrilde Zalm met Kersenhout" />
+  </div>
+  <div class="action-buttons">
+    <button><span class="material-icons-outlined">print</span> Afdrukken</button>
+    <button><span class="material-icons-outlined">push_pin</span> Pin</button>
+  </div>
+  <div class="info-grid">
+    <div><span class="material-icons-outlined">schedule</span> Voorbereiding: 30 min</div>
+    <div><span class="material-icons-outlined">schedule</span> Bereiding: 30 min</div>
+    <div><span class="material-icons-outlined">restaurant_menu</span> Gang: Hoofdgerecht</div>
+    <div><span class="material-icons-outlined">public</span> Keuken: Vis</div>
+    <div><span class="material-icons-outlined">people</span> Porties: <span class="servings">4</span></div>
+  </div>
+  <div class="scale-buttons">
+    <button data-factor="1">1x</button>
+    <button data-factor="2">2x</button>
+    <button data-factor="3">3x</button>
+  </div>
+  <h3>Ingrediënten</h3>
+  <ul>
+    <li data-base="4"><span class="quantity">4</span> zalmmoten</li>
+    <li data-base="2"><span class="quantity">2</span> el olijfolie</li>
+    <li data-base="1"><span class="quantity">1</span> tl zout</li>
+    <li data-base="0.5"><span class="quantity">0.5</span> tl versgemalen peper</li>
+  </ul>
+  <h3>Bereiding</h3>
+  <ol>
+    <li>Steek de barbecue aan en bereid voor op directe hitte.</li>
+    <li>Wrijf de zalm in met olijfolie en bestrooi met zout en peper.</li>
+    <li>Leg de zalm op een plankje kersenhout en grill 30 minuten.</li>
+    <li>Serveer direct.</li>
+  </ol>
+  <details>
+    <summary>Waarom kersenhout?</summary>
+    <p>Kersenhout geeft de zalm een licht zoete rooksmaak die perfect past bij vette vis.</p>
+  </details>
+  <div class="note-box">
+    <p>Serveer met gegrilde groenten en citroenpartjes.</p>
+  </div>
+  <div class="cta">
+    <div><span class="material-icons-outlined">shopping_cart</span> <a href="/product/kersenhout">Kersenhout chunks voor zalm</a></div>
+    <div><span class="material-icons-outlined">shopping_cart</span> <a href="/product/houten-rookplank">Rookplank voor visgerechten</a></div>
+  </div>
+  <script>
+    (function() {
+      const card = document.currentScript.closest('.receptkaart');
+      const baseServings = parseInt(card.dataset.baseServings, 10);
+      const ingredients = card.querySelectorAll('ul li');
+      function update(factor) {
+        card.querySelector('.servings').textContent = baseServings * factor;
+        ingredients.forEach(li => {
+          const base = parseFloat(li.dataset.base);
+          if (!isNaN(base)) {
+            li.querySelector('.quantity').textContent = base * factor;
+          }
+        });
+      }
+      card.querySelectorAll('.scale-buttons button').forEach(btn => {
+        btn.addEventListener('click', () => update(parseInt(btn.dataset.factor, 10)));
+      });
+    })();
+  </script>
+</div>
